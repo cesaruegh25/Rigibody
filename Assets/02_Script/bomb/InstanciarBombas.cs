@@ -8,8 +8,8 @@ public class InstanciarBombas : MonoBehaviour
     [SerializeField] private Transform player;
 
     [SerializeField] private float spawnInterval = 2f;
-    private float distancia = 2f;
-    private float altura = 20f;
+    private float distancia = 5f;
+    private float altura = 30f;
 
     public PlayerMovement playerMovement;
 
@@ -34,7 +34,7 @@ public class InstanciarBombas : MonoBehaviour
             Vector2 randomDirection = UnityEngine.Random.insideUnitCircle.normalized;
             Vector3 spawnPosition = player.position + new Vector3(randomDirection.x, altura, randomDirection.y) * UnityEngine.Random.Range(0, distancia);
 
-            Instantiate(bombaPrefab, spawnPosition, Quaternion.identity);
+            Instantiate(bombaPrefab, spawnPosition, Quaternion.EulerAngles(180f, 0, 0));
 
             yield return new WaitForSeconds(spawnInterval);
 

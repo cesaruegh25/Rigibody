@@ -44,6 +44,10 @@ public class AnimacionesPlayer : MonoBehaviour
     {
         animator.SetTrigger("GolpeHecho");
     }
+    public void AnimacionMuerto()
+    {
+        animator.SetTrigger("muerte");
+    }
     public void PuedoGolpear()
     {
         puedoGolpear = true;

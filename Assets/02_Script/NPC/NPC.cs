@@ -41,15 +41,15 @@ public class NPC : MonoBehaviour
             {
                 cerca = true;
                 tiempo = false;
-            }
-            UIManager.instance.ActivateConversacion(true);
-            UIManager.instance.SetConversacion("Hola, soy un NPC");
+                UIManager.instance.ActivateConversacion(true);
+                UIManager.instance.SetConversacion("Hola, soy un NPC");
 
-            UIManager.instance.ActivateOpciones(true);
-            UIManager.instance.SetOpciones("Adiós");
-            //UIManager.instance.SetOpciones("1. ¿Cómo estás? \n 2. ¿Qué haces? \n 3. Adiós");
-            //playerLook.enabled = false;
-            playerMovement.desactivarMovimiento(false);
+                UIManager.instance.ActivateOpciones(true);
+                UIManager.instance.SetOpciones("Adiós");
+                //UIManager.instance.SetOpciones("1. ¿Cómo estás? \n 2. ¿Qué haces? \n 3. Adiós");
+                //playerLook.enabled = false;
+                playerMovement.desactivarMovimiento(false);
+            }
         }
     }
     public void OnTriggerExit(Collider other)

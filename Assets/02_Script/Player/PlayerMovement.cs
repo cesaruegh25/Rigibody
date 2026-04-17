@@ -86,7 +86,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (value.isPressed && isGrounded) 
         {
-            Debug.Log("boton presionado");
+            //Debug.Log("boton presionado");
             GetComponent<AnimacionesPlayer>().AnimacionSaltar1();
         }
     }
@@ -148,22 +148,23 @@ public class PlayerMovement : MonoBehaviour
         if (movimiento)
         {
             rb.linearVelocity = newVelocity;
-        }
+        
 
-        if (moveInput.x != 0 || moveInput.y != 0 && isGrounded)
-        {
-            if (!audioSource.isPlaying)
+            if (moveInput.x != 0 || moveInput.y != 0 && isGrounded)
             {
-                audioSource.Play();
-                Debug.Log("sonido de pasos");
+                if (!audioSource.isPlaying)
+                {
+                    audioSource.Play();
+                    Debug.Log("sonido de pasos");
+                }
             }
-        }
-        else
-        {
-            if (audioSource.isPlaying)
+            else
             {
-                audioSource.Stop();
-                Debug.Log("parar sonido de pasos");
+                if (audioSource.isPlaying)
+                {
+                    audioSource.Stop();
+                    Debug.Log("parar sonido de pasos");
+                }
             }
         }
     }
@@ -175,11 +176,16 @@ public class PlayerMovement : MonoBehaviour
             Debug.Log("toco suelo con trigger");
         }
         
-    }
+    }*/
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("collision con " + collision);
-    }*/
+        if (collision.gameObject.tag == "bomb")
+        {
+            GetComponent<AnimacionesPlayer>().AnimacionMuerto();
+            movimiento = false;
+            muerto = true;
+        }
+    }
     public bool IsGrounded()
     {
         return isGrounded;
@@ -215,7 +221,7 @@ public class PlayerMovement : MonoBehaviour
         bool altPressed = Keyboard.current != null &&
             (Keyboard.current.leftAltKey.isPressed ||
             Keyboard.current.rightAltKey.isPressed);
-        if (altPressed)
+        if (altPressed || muerto)
         {
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;

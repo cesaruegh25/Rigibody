@@ -16,7 +16,7 @@ public class PlayerLook : MonoBehaviour
     private Transform cameraTransform;
     private Camera currentCamera;
     private bool canMove = true;
-
+    private bool muerto = false;
     public bool camGun = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -54,6 +54,7 @@ public class PlayerLook : MonoBehaviour
     }
     public void OnLook(InputValue value)
     {
+        if (gameObject.GetComponent<PlayerMovement>().muerto)return;
         lookInput = value.Get<Vector2>();
     }
     // se ejecuta antes que el start se usa para centrar la camara
